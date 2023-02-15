@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        promptInfo= new BiometricPrompt.PromptInfo.Builder().setTitle("Tech project").setSubtitle("Use Fingerprint").setNegativeButtonText("Cancel").build();
+        promptInfo= new BiometricPrompt.PromptInfo.Builder().setTitle("Authenticate please").setSubtitle("Use Fingerprint").setNegativeButtonText("Cancel").build();
 
         biometricPrompt.authenticate(promptInfo);
     }
