@@ -27,15 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mMainLayout=findViewById(R.id.main_layout);
 
         BiometricManager biometricManager=BiometricManager.from(this);
-        switch (biometricManager.canAuthenticate())
-        {
-            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(getApplicationContext(), "Device doesn't have fingerprint", Toast.LENGTH_SHORT).show();
-                break;
 
-            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                Toast.makeText(getApplicationContext(), "No Fingerprint Assigned", Toast.LENGTH_SHORT).show();
-        }
         Executor executor = ContextCompat.getMainExecutor(this);
 
         biometricPrompt=new BiometricPrompt(MainActivity.this, executor, new BiometricPrompt.AuthenticationCallback(){
@@ -56,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        promptInfo=new BiometricPrompt.PromptInfo.Builder().setTitle("Tech project").setDescription("Use Fingerprint").setDeviceCredentialAllowed(true).build();
+        promptInfo= new BiometricPrompt.PromptInfo.Builder().setTitle("Tech project").setSubtitle("Use Fingerprint").setNegativeButtonText("Cancel").build();
 
         biometricPrompt.authenticate(promptInfo);
     }
